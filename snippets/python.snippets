@@ -17,11 +17,10 @@ snippet from
 # Module Docstring
 snippet docs
 	"""
-	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
-	Author: `g:snips_author`
-	Email: `g:snips_email`
-	Github: `g:snips_github`
-	Description: ${0}
+	Filename: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
+	Purpose : ${0:description}
+	Created : `strftime("%Y-%m-%d")`
+	Author  : `g:snips_author`
 	"""
 
 snippet wh
@@ -42,7 +41,7 @@ snippet awith
 # New Class
 snippet cl
 	class ${1:ClassName}(${2:object}):
-		"""${3:docstring for $1}"""
+		""" ${3:$1 class} """
 		def __init__(self, ${4:arg}):
 			${5:super($1, self).__init__()}
 			self.$4 = $4
@@ -50,25 +49,25 @@ snippet cl
 # New Function
 snippet def
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		"""${3:docstring for $1}"""
-		${0}
+		""" ${3:$1 function} """
+		${0:pass}
 snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		${0}
+		${0:pass}
 snippet adef
 	async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		"""${3:docstring for $1}"""
+		""" ${3:$1 function} """
 		${0}
 snippet adeff
 	async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		${0}
+		${0:pass}
 # New Method
 snippet defm
 	def ${1:mname}(self, ${2:arg}):
-		${0}
+		${0:pass}
 snippet adefm
 	async def ${1:mname}(self, ${2:arg}):
-		${0}
+		${0:pass}
 
 # New Property
 snippet property
@@ -175,7 +174,7 @@ snippet nosetrace
 snippet pprint
 	__import__('pprint').pprint(${1})
 snippet "
-	"""${0:doc}
+	""" ${0:doc}
 	"""
 # assertions
 snippet a=
@@ -227,7 +226,7 @@ snippet addaarg
 	parser.add_argument("${0:arg}", "${1:long_arg}", action="${2:store_true}", default=${3:False}, help="${4:Help text}")
 snippet pargs
 	"${VISUAL:return }"parser.parse_args()
-	
+
 # logging
 # glog = get log
 snippet glog
@@ -244,16 +243,21 @@ snippet lc
 	LOGGER.critical(${0:msg})
 snippet li
 	LOGGER.info(${0:msg})
+snippet doc
+	""" ${1:description}
+	@param ${2:param} ${3:type} : ${4:description}
+	@returns ${5:rtype}: ${6:description}
+	"""
 snippet epydoc
-	"""${1:Description}
+	""" ${1:description}
 
-	@param ${2:param}: ${3: Description}
+	@param ${2:param}: ${3: description}
 	@type  $2: ${4: Type}
 
-	@return: ${5: Description}
+	@return: ${5: description}
 	@rtype : ${6: Type}
 
-	@raise e: ${0: Description}
+	@raise e: ${0: description}
 	"""
 snippet dol
 	def ${1:__init__}(self, *args, **kwargs):
